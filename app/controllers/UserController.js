@@ -13,7 +13,9 @@ class UserController{
     }
 
     async getUser(req, res){
-
+        const id = req.params.id
+        const users = await db.query(`SELECT * FROM users WHERE id = $1`, [id])
+        res.json(users.rows[0])
     }
 
     async updateUser(req, res){
